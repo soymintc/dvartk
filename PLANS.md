@@ -48,4 +48,6 @@ scriv create
 scriv collect  # creates CHANGELOG
 poetry config pypi-token.pypi $PYPITOKEN
 poetry publish --build
+vi setup.py  # then add contents - refer: https://python-packaging.readthedocs.io/en/latest/dependencies.html
+python setup.py develop
 ```

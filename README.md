@@ -1,5 +1,5 @@
 # dvartk (variant comparison toolkit)
-## INSTALL
+## Install
 ```
 pip install dvartk
 ```
@@ -9,11 +9,11 @@ Basically a package for comparing SNVs of maf files
 - in the future, SV, INDEL support, vcf support as well
 
 ## Usage
-### Compariing SNVs
+### Comparing SNVs
 ```
 import dvartk
 
-# set a MAF paths
+# set MAF paths
 maf1_path = '/path/to/maf1'
 maf2_path = '/path/to/maf2'
 
@@ -36,7 +36,7 @@ print(summary)
 ```
 import dvartk
 
-# set a MAF paths
+# set a MAF path
 maf_path = '/path/to/maf'
 
 # get counts per trinucleotide type
