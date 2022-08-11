@@ -35,7 +35,7 @@ def construct_snv_label(context, alt):
 
 def count_snvs(snvs, genome=genome):
     """Convert maf form to count table per variant type. Requires 'genome'"""
-    df = snvs.copy()
+    df = snvs.copy()  # snvs <- essentially "maf" variable
 
     var_converter = {
         "G>T": "C>A",
@@ -67,5 +67,7 @@ def count_snvs(snvs, genome=genome):
         context, alt = normalize_snv(context, row["alt"])
         counts[construct_snv_label(context, alt)] += 1
         contexts.append(context)
+
+    assert snvs.shape[0] == counts.sum()
 
     return counts
