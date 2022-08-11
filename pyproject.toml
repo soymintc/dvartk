@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dvartk"
-version = "0.1.3b"
+version = "0.1.3c"
 description = ""
 authors = ["Seongmin Choi <soymintc@gmail.com>"]
 readme = "README.md"
