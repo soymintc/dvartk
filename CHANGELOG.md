@@ -3,4 +3,4 @@
 
 ## Added
 
-- SNV loading, parsing, plotting utils for Isabl maf input
+- README.md
