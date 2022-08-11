@@ -32,7 +32,7 @@ def load_and_convert_snv_maf_columns(maf_path, snv_file_config):
 
     assert len(set(snv_file_config.col_converter.keys()) & set(maf.columns)) == len(
         snv_file_config.col_converter
-    )
+    )  # all src names should be in maf columns
     maf = maf.rename(columns=snv_file_config.col_converter)
     return maf
 
