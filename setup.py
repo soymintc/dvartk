@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="dvartk",
-    version="0.1.3",
+    version="0.1.3b",
     description="variant comparison toolkit",
     url="http://github.com/soymintc/dvartk",
     author="Seongmin Choi",

@@ -1,4 +1,4 @@
-__version__ = "0.1.0"
+__version__ = "0.1.3b"
 
 from dvartk.parser import (
     SnvFileConfig,
