@@ -43,4 +43,7 @@ poetry publish -r testpypi
 poetry add -D scriv[toml]  # for changelogs
 vi pyproject.toml # add: [tool.scriv]\nformat = "md"
 # would like to do pytest but bloody libffi version in CentOS is 6 not 7
+scriv create
+# then edit the changelog.d/*.md file
+scriv collect  # creates CHANGELOG
 ```
