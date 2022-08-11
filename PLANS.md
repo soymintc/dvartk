@@ -46,4 +46,6 @@ vi pyproject.toml # add: [tool.scriv]\nformat = "md"
 scriv create
 # then edit the changelog.d/*.md file
 scriv collect  # creates CHANGELOG
+poetry config pypi-token.pypi $PYPITOKEN
+poetry publish --build
 ```
