@@ -1,9 +1,11 @@
 __version__ = "0.1.4"
 
 from dvartk.parser import (
+    SvFileConfig,
     SnvFileConfig,
-    load_and_convert_snv_maf_columns,
+    SvComparison,
     SnvComparison,
+    convert_type_names,
 )
 
 from dvartk.process import (
