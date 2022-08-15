@@ -47,7 +47,8 @@ scriv create
 # then edit the changelog.d/*.md file
 scriv collect  # creates CHANGELOG
 poetry config pypi-token.pypi $PYPITOKEN
+
+for package in $MY_PACKAGES; do poetry add $package; done
+poetry install
 poetry publish --build
-vi setup.py  # then add contents - refer: https://python-packaging.readthedocs.io/en/latest/dependencies.html
-python setup.py develop
 ```

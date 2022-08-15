@@ -1,0 +1,6 @@
+pandas
+wgs-analysis
+numpy
+matplotlib
+matplotlib_venn
+seaborn
