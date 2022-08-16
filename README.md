@@ -18,16 +18,17 @@ maf1_path = '/path/to/maf1'
 maf2_path = '/path/to/maf2'
 
 # convert custom chrom, pos, ref, alt column names to "chrom", "pos", "ref", "alt"
-snv_file_config = dvartk.parser.SnvFileConfig('Chromosome', 'Start_Position', 'Reference_Allele', 'Tumor_Seq_Allele2')
+snv_file_config = dvartk.parser.SnvFileConfig(
+    'Chromosome', 'Start_Position', 'Reference_Allele', 'Tumor_Seq_Allele2')
 
 # load and convert columns of MAF
-maf1 = dvartk.load_and_convert_maf_columns(maf1_path, snv_file_config)
-maf2 = dvartk.load_and_convert_maf_columns(maf2_path, snv_file_config)
+maf1 = snv_file_config.load_and_convert_maf_columns(maf1_path)
+maf2 = snv_file_config.load_and_convert_maf_columns(maf2_path)
 
 # get set counts (intersection, difference, ...) between maf1 and maf2
 # first make a SNV comparison instance
 snv_cmp = SnvComparison(maf1, maf2)
-snv_cmp.get_set_counts() # get A[maf1], B[maf2] counts
+snv_cmp.get_set_counts(get_return=False) # get A[maf1], B[maf2] counts
 summary = snv_cmp.make_oneliner()
 print(summary) # returns [#(A), #(B), #(A-B), #(B-A), #(A&B), #(A|B)]
 ```
@@ -38,7 +39,8 @@ import dvartk
 
 # extract MAF data
 maf_path = '/path/to/maf'
-snv_file_config = dvartk.parser.SnvFileConfig('Chromosome', 'Start_Position', 'Reference_Allele', 'Tumor_Seq_Allele2')
+snv_file_config = dvartk.parser.SnvFileConfig(
+    'Chromosome', 'Start_Position', 'Reference_Allele', 'Tumor_Seq_Allele2')
 maf = dvartk.load_and_convert_maf_columns(maf_path, snv_file_config)
 
 # get counts per trinucleotide type
@@ -67,13 +69,13 @@ sv_file_config = dvartk.parser.SvFileConfig(
     'CHROM_B', 'Start_Position2', 'Strand2', 'SV_Type', 'Breakpoint_Length')
 
 # load and convert columns of MAF; can have different configs too
-maf1 = dvartk.load_and_convert_maf_columns(maf1_path, sv_file_config)
-maf2 = dvartk.load_and_convert_maf_columns(maf2_path, sv_file_config)
+maf1 = sv_file_config.load_and_convert_maf_columns(maf1_path)
+maf2 = sv_file_config.load_and_convert_maf_columns(maf2_path)
 
 # get set counts (intersection, difference, ...) between maf1 and maf2
 # first make a SV comparison instance
 snv_cmp = SvComparison(maf1, maf2)
-snv_cmp.get_set_counts() # get A[maf1], B[maf2] counts
+snv_cmp.get_set_counts(get_return=False) # get A[maf1], B[maf2] counts
 summary = snv_cmp.make_oneliner()
 print(summary) # returns [#(A), #(B), #(A-B), #(B-A), #(A&B), #(A|B)]
 ```
@@ -87,7 +89,7 @@ maf_path = '/path/to/maf'
 sv_file_config = dvartk.parser.SvFileConfig(
     'CHROM_A', 'Start_Position1', 'Strand1',
     'CHROM_B', 'Start_Position2', 'Strand2', 'SV_Type', 'Breakpoint_Length')
-maf = dvartk.load_and_convert_maf_columns(maf_path, sv_file_config)
+maf = sv_file_config.load_and_convert_maf_columns(maf_path)
 
 # get counts per trinucleotide type
 counts = dvartk.count_svs(maf)
