@@ -11,32 +11,32 @@ def plot_sv_spectra(
     """Draw SV spectra plot based on SV counts"""
 
     sv_colors = [
-        "#d6e6f4",
+        "#d6e6f4",  # deletion
         "#abd0e6",
         "#6aaed6",
         "#3787c0",
         "#105ba4",
-        "#08315c",  # deletion
-        "#fedfc0",
+        "#08315c",
+        "#fedfc0",  # duplication
         "#fdb97d",
         "#fd8c3b",
         "#e95e0d",
         "#b63c02",
-        "#642101",  # duplication
-        "#dbcce8",
+        "#642101",
+        "#dbcce8",  # insertion
         "#b799d2",
         "#9366bc",
         "#6f4298",
         "#4a2c65",
-        "#39224f",  # insertion
-        "#dbf1d6",
+        "#39224f",
+        "#dbf1d6",  # inversion
         "#aedea7",
         "#73c476",
         "#37a055",
         "#0b7734",
-        "#043316",  # inversion
-        "#aaaaaa",
-    ]  # translocation
+        "#043316",
+        "#aaaaaa",  # translocation
+    ]
 
     fig, ax = plt.subplots(1)
     fig.set_figheight(2.5)

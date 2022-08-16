@@ -1,11 +1,9 @@
-Metadata-Version: 1.0
+Metadata-Version: 2.1
 Name: dvartk
-Version: 0.1.6
-Summary: UNKNOWN
+Version: 0.1.7
 Home-page: https://github.com/soymintc/dvartk
 Author: Seongmin Choi
 Author-email: soymintc@gmail.com
 License: MIT
-Description: UNKNOWN
-Keywords: variant comparison toolkit
-Platform: UNKNOWN
+Keywords: SNV,SV,comparison,toolkit
+License-File: LICENSE

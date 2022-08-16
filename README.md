@@ -4,9 +4,9 @@
 pip install dvartk
 ```
 
-## Philosophy
-Basically a package for comparing SNVs of maf files
-- in the future, SV, INDEL support, vcf support as well
+## Summary
+Basically a package for comparing SNVs and SVs of maf files
+- in the future, INDEL support, input VCF support as well
 
 ## Usage
 ### Comparing SNVs
@@ -21,30 +21,83 @@ maf2_path = '/path/to/maf2'
 snv_file_config = dvartk.parser.SnvFileConfig('Chromosome', 'Start_Position', 'Reference_Allele', 'Tumor_Seq_Allele2')
 
 # load and convert columns of MAF
-maf1 = dvartk.load_and_convert_snv_maf_columns(maf1_path, snv_file_config)
-maf2 = dvartk.load_and_convert_snv_maf_columns(maf2_path, snv_file_config)
+maf1 = dvartk.load_and_convert_maf_columns(maf1_path, snv_file_config)
+maf2 = dvartk.load_and_convert_maf_columns(maf2_path, snv_file_config)
 
 # get set counts (intersection, difference, ...) between maf1 and maf2
 # first make a SNV comparison instance
 snv_cmp = SnvComparison(maf1, maf2)
 snv_cmp.get_set_counts() # get A[maf1], B[maf2] counts
 summary = snv_cmp.make_oneliner()
-print(summary)
+print(summary) # returns [#(A), #(B), #(A-B), #(B-A), #(A&B), #(A|B)]
 ```
 
 ### Plot SNV trinucleotide spectra
 ```
 import dvartk
 
-# set a MAF path
+# extract MAF data
 maf_path = '/path/to/maf'
+snv_file_config = dvartk.parser.SnvFileConfig('Chromosome', 'Start_Position', 'Reference_Allele', 'Tumor_Seq_Allele2')
+maf = dvartk.load_and_convert_maf_columns(maf_path, snv_file_config)
 
 # get counts per trinucleotide type
 counts = dvartk.count_snvs(maf)
 dvartk.plot_snv_spectra(
-    counts,
-    'plot title',  # title of the plot e.g. sample ID
+    counts=counts,
+    title='foo',     # title of the plot e.g. sample ID
     save_path=None,  # output path for your plot; if None, don't save plot
-    tag=' (bar)'  # tag to add to plot title; if None, don't add tag
+    tag=' (bar)'     # tag to add to plot title; if None, don't add tag
+    yscale_log=True, # make yscale log
+    ylim=None,       # set ylim for plot
+    debug=False,     # print inside variables
+)
+```
+
+### Comparing SVs
+```
+# set MAF paths
+maf1_path = '/path/to/maf1'
+maf2_path = '/path/to/maf2'
+
+# convert custom chrom, pos, ref, alt column names to:
+# "chromosome_1", "position_1", "strand_1", "chrom2", "pos2", "strand2", "type", "length"
+sv_file_config = dvartk.parser.SvFileConfig(
+    'CHROM_A', 'Start_Position1', 'Strand1',
+    'CHROM_B', 'Start_Position2', 'Strand2', 'SV_Type', 'Breakpoint_Length')
+
+# load and convert columns of MAF; can have different configs too
+maf1 = dvartk.load_and_convert_maf_columns(maf1_path, sv_file_config)
+maf2 = dvartk.load_and_convert_maf_columns(maf2_path, sv_file_config)
+
+# get set counts (intersection, difference, ...) between maf1 and maf2
+# first make a SV comparison instance
+snv_cmp = SvComparison(maf1, maf2)
+snv_cmp.get_set_counts() # get A[maf1], B[maf2] counts
+summary = snv_cmp.make_oneliner()
+print(summary) # returns [#(A), #(B), #(A-B), #(B-A), #(A&B), #(A|B)]
+```
+
+### Plot SV palimpsest-like spectra
+```
+import dvartk
+
+# extract MAF data
+maf_path = '/path/to/maf'
+sv_file_config = dvartk.parser.SvFileConfig(
+    'CHROM_A', 'Start_Position1', 'Strand1',
+    'CHROM_B', 'Start_Position2', 'Strand2', 'SV_Type', 'Breakpoint_Length')
+maf = dvartk.load_and_convert_maf_columns(maf_path, sv_file_config)
+
+# get counts per trinucleotide type
+counts = dvartk.count_svs(maf)
+dvartk.plot_sv_spectra(
+    counts=counts,
+    title='foo',     # title of the plot e.g. sample ID
+    save_path=None,  # output path for your plot; if None, don't save plot
+    tag=' (bar)'     # tag to add to plot title; if None, don't add tag
+    yscale_log=True, # make yscale log
+    ylim=None,       # set ylim for plot
+    debug=False,     # print inside variables
 )
 ```
