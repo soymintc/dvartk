@@ -10,7 +10,7 @@ Basically a package for comparing SNVs and SVs of maf files
 
 ## Usage
 ### Comparing SNVs
-```
+```python
 import dvartk
 
 # set MAF paths
@@ -34,7 +34,7 @@ print(summary) # returns [#(A), #(B), #(A-B), #(B-A), #(A&B), #(A|B)]
 ```
 
 ### Plot SNV trinucleotide spectra
-```
+```python
 import dvartk
 
 # extract MAF data
@@ -57,7 +57,7 @@ dvartk.plot_snv_spectra(
 ```
 
 ### Comparing SVs
-```
+```python
 # set MAF paths
 maf1_path = '/path/to/maf1'
 maf2_path = '/path/to/maf2'
@@ -81,7 +81,7 @@ print(summary) # returns [#(A), #(B), #(A-B), #(B-A), #(A&B), #(A|B)]
 ```
 
 ### Plot SV palimpsest-like spectra
-```
+```python
 import dvartk
 
 # extract MAF data
