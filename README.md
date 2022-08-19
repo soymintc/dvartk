@@ -5,8 +5,9 @@ pip install dvartk
 ```
 
 ## Summary
-Basically a package for comparing SNVs and SVs of maf files
-- in the future, INDEL support, input VCF support as well
+Basically a package for comparing SNVs and SVs of maf files.
+- in the future, INDEL support, input VCF support as well.
+For whatever variant table file you have, as long as you designate the source column names in `*_src`, `dvartk` will process your results.
 
 ## Usage
 ### Comparing SNVs
@@ -58,6 +59,8 @@ dvartk.plot_snv_spectra(
 
 ### Comparing SVs
 ```python
+import dvartk
+
 # set MAF paths
 maf1_path = '/path/to/maf1'
 maf2_path = '/path/to/maf2'
