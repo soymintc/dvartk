@@ -114,9 +114,11 @@ def plot_snv_spectra(
         plt.savefig(save_path)
 
 
-def plot_venn2(cmp, weighted=False, label1="A", label2="B"):
+def plot_venn2(cmp, weighted=False, label1="A", label2="B", save_path=None):
     """Draw a venn diagram from a Snv/SvComparison instance"""
     if weighted:
         vd = venn2([cmp.A, cmp.B], set_labels=(label1, label2))
     else:
         vd = venn2_unweighted([cmp.A, cmp.B], set_labels=(label1, label2))
+    if save_path:
+        plt.savefig(save_path)
