@@ -11,32 +11,32 @@ def plot_sv_spectra(
     """Draw SV spectra plot based on SV counts"""
 
     sv_colors = [
-        "#d6e6f4",  # deletion
+        "#d6e6f4",
         "#abd0e6",
         "#6aaed6",
         "#3787c0",
         "#105ba4",
-        "#08315c",
-        "#fedfc0",  # duplication
+        "#08315c",  # deletion
+        "#fedfc0",
         "#fdb97d",
         "#fd8c3b",
         "#e95e0d",
         "#b63c02",
-        "#642101",
-        "#dbcce8",  # insertion
+        "#642101",  # duplication
+        "#dbcce8",
         "#b799d2",
         "#9366bc",
         "#6f4298",
         "#4a2c65",
-        "#39224f",
-        "#dbf1d6",  # inversion
+        "#39224f",  # insertion
+        "#dbf1d6",
         "#aedea7",
         "#73c476",
         "#37a055",
         "#0b7734",
-        "#043316",
-        "#aaaaaa",  # translocation
-    ]
+        "#043316",  # inversion
+        "#aaaaaa",
+    ]  # translocation
 
     fig, ax = plt.subplots(1)
     fig.set_figheight(2.5)
@@ -114,9 +114,11 @@ def plot_snv_spectra(
         plt.savefig(save_path)
 
 
-def plot_venn2(cmp, weighted=False, label1="A", label2="B"):
+def plot_venn2(cmp, weighted=False, label1="A", label2="B", save_path=None):
     """Draw a venn diagram from a Snv/SvComparison instance"""
     if weighted:
         vd = venn2([cmp.A, cmp.B], set_labels=(label1, label2))
     else:
         vd = venn2_unweighted([cmp.A, cmp.B], set_labels=(label1, label2))
+    if save_path:
+        plt.savefig(save_path)

@@ -221,8 +221,12 @@ class SvComparison:
                 self.A | self.B,
             )
 
-    def make_oneliner(self, name=None, get_str=False):
+    def make_oneliner(
+        self, name=None, get_str=False, print_header=False, delimitor="\t"
+    ):
         """Returns #A, #B, #(A-B), #(B-A), #(A&B), #(A|B)"""
+        if print_header:
+            print("A B A-B B-A A&B A|B".replace(" ", delimitor))
         for attr in ["A", "B"]:
             if not hasattr(self, attr):
                 self.get_set_counts()
