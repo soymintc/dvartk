@@ -39,7 +39,7 @@ def plot_sv_spectra(
     ]  # translocation
 
     fig, ax = plt.subplots(1)
-    fig.set_figheight(2.5)
+    fig.set_figheight(3.5)
     fig.set_figwidth(8)
 
     if tag:
@@ -62,6 +62,7 @@ def plot_sv_spectra(
     if ylim:
         assert len(ylim) == 2
         plt.ylim(ylim)
+    plt.tight_layout()
 
     if save_path:
         plt.savefig(save_path)
@@ -73,7 +74,7 @@ def plot_snv_spectra(
     """Draw SNV spectra plot based on SNV counts"""
 
     fig, ax = plt.subplots(1)
-    fig.set_figheight(3)
+    fig.set_figheight(4)
     fig.set_figwidth(20)
 
     if tag:
@@ -102,13 +103,13 @@ def plot_snv_spectra(
     ax.legend(bbox_to_anchor=(1, 1), loc="upper left")
 
     sns.despine(ax=ax, trim=True)
-    plt.tight_layout()
 
     if yscale_log:
         plt.yscale("log")
     if ylim:
         assert len(ylim) == 2
         plt.ylim(ylim)
+    plt.tight_layout()
 
     if save_path:
         plt.savefig(save_path)
