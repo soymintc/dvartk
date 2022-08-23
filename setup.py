@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="dvartk",
-    version="0.1.8",
+    version="0.1.9",
     license="MIT",
     author="Seongmin Choi",
     author_email="soymintc@gmail.com",
