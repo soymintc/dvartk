@@ -66,7 +66,7 @@ def plot_sv_spectra(
 
     if save_path:
         plt.savefig(save_path)
-    plt.close()
+        plt.close()
 
 
 def plot_snv_spectra(
@@ -114,7 +114,7 @@ def plot_snv_spectra(
 
     if save_path:
         plt.savefig(save_path)
-    plt.close()
+        plt.close()
 
 
 def plot_venn2(cmp, weighted=False, label1="A", label2="B", title="", save_path=None):
@@ -127,5 +127,5 @@ def plot_venn2(cmp, weighted=False, label1="A", label2="B", title="", save_path=
         venn2_unweighted([cmp.A, cmp.B], set_labels=(label1, label2))
     if save_path:
         plt.savefig(save_path)
+        plt.close()
     plt.tight_layout()
-    plt.close()
