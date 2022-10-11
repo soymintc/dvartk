@@ -1,9 +1,9 @@
+import os
 from setuptools import setup, find_packages
-
 
 setup(
     name="dvartk",
-    version="0.1.9",
+    version="0.1.11",
     license="MIT",
     author="Seongmin Choi",
     author_email="soymintc@gmail.com",

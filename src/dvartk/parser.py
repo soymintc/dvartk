@@ -189,10 +189,16 @@ class SvComparison:
         except ValueError:
             sv_match = pd.DataFrame(columns=["reference_id", "target_id"])
 
-        self.maf1_match = self.maf1[self.maf1.index.isin(sv_match["reference_id"])]
-        self.maf1_nonmatch = self.maf1[~self.maf1.index.isin(sv_match["reference_id"])]
-        self.maf2_match = self.maf2[self.maf2.index.isin(sv_match["target_id"])]
-        self.maf2_nonmatch = self.maf2[~self.maf2.index.isin(sv_match["target_id"])]
+        self.maf1_match = self.maf1[
+            self.maf1.prediction_id.isin(sv_match["reference_id"])
+        ]
+        self.maf1_nonmatch = self.maf1[
+            ~self.maf1.prediction_id.isin(sv_match["reference_id"])
+        ]
+        self.maf2_match = self.maf2[self.maf2.prediction_id.isin(sv_match["target_id"])]
+        self.maf2_nonmatch = self.maf2[
+            ~self.maf2.prediction_id.isin(sv_match["target_id"])
+        ]
 
     def make_set(self, data):
         df_ix = data.copy().set_index(self.ixs).index.tolist()
@@ -268,10 +274,18 @@ class SnvComparison:
         self.maf1 = self.maf1.set_index(self.ixs, drop=False)
         self.maf2 = self.maf2.set_index(self.ixs, drop=False)
 
-        self.maf1_match = self.maf1[self.maf1.index.isin(snv_match.index)]
-        self.maf1_nonmatch = self.maf1[~self.maf1.index.isin(snv_match.index)]
-        self.maf2_match = self.maf2[self.maf2.index.isin(snv_match.index)]
-        self.maf2_nonmatch = self.maf2[~self.maf2.index.isin(snv_match.index)]
+        self.maf1_match = self.maf1[
+            self.maf1.prediction_id.isin(snv_match.prediction_id)
+        ]
+        self.maf1_nonmatch = self.maf1[
+            ~self.maf1.prediction_id.isin(snv_match.prediction_id)
+        ]
+        self.maf2_match = self.maf2[
+            self.maf2.prediction_id.isin(snv_match.prediction_id)
+        ]
+        self.maf2_nonmatch = self.maf2[
+            ~self.maf2.prediction_id.isin(snv_match.prediction_id)
+        ]
 
     def make_set(self, data):
         df_ix = data.copy().set_index(self.ixs).index.tolist()
