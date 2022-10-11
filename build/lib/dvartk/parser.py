@@ -179,8 +179,8 @@ class SvComparison:
             print(f"self.maf1: {self.maf1}")
             print(f"self.maf2: {self.maf2}")
 
-        maf1["prediction_id"] = maf1.index
-        maf2["prediction_id"] = maf2.index
+        self.maf1["prediction_id"] = maf1.index
+        self.maf2["prediction_id"] = maf2.index
 
         try:
             sv_match = wgs_analysis.algorithms.rearrangement.match_breakpoints(
