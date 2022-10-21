@@ -184,7 +184,7 @@ class SvComparison:
 
         try:
             sv_match = wgs_analysis.algorithms.rearrangement.match_breakpoints(
-                maf1, maf2, window_size=200
+                self.maf1, self.maf2, window_size=200
             )
         except ValueError:
             sv_match = pd.DataFrame(columns=["reference_id", "target_id"])
