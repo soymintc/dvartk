@@ -15,7 +15,7 @@ def construct_empty_count_series():
 def normalize_snv(context, alt):
     ref = context.seq[1]
 
-    if ref in ["A", "G"]:
+    if ref in ("A", "G"):
         context = (-context).seq
 
         complement = {"A": "T", "C": "G", "G": "C", "T": "A"}
