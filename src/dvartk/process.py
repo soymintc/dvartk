@@ -1,6 +1,8 @@
+import uuid
 import pandas as pd
 import numpy as np
 from pyfaidx import Fasta
+from SigProfilerMatrixGenerator.scripts import SigProfilerMatrixGeneratorFunc as matGen
 
 genome = Fasta("/juno/work/shah/users/chois7/mmctm/reference/GRCh37-lite.fa")
 
@@ -62,6 +64,33 @@ def count_svs(maf):
     sv_count_values = sv_counts.index.map(df["sv_category"].value_counts()).fillna(0)
     sv_counts = pd.Series(sv_count_values, index=sv_labels).astype(int)
     return sv_counts
+
+
+def count_indels(df, genome_version="GRCh37"):
+    """df: pandas DataFrame of chrom, pos, ref, alt columns
+    - chrom [str]: chromosome ID, e.g. 'chr1', '1'
+    - pos [int]: 1-based VCF format indel coordinate
+    - ref: VCF format indel reference
+    - alt: VCF format indel alteration
+    genome_version [str]: element in {'GRCh37', 'GRCh38'}
+    """
+    tmp_dirname = f"_{str(uuid.uuid4())}"
+    if not os.path.exists(tmp_dirname):
+        subprocess.run(["mkdir", tmp_dirname])
+    df["ID"] = "."
+    df = df[["chrom", "pos", "ID", "ref", "alt"]]
+    df.columns = ["#CHROM", "POS", "ID", "REF", "ALT"]
+    tmp_vcf_path = f"{tmp_dirname}/indels.vcf"
+    df.to_csv(tmp_vcf_path, sep="\t", index=False)
+    project = "indels"
+    matrices = matGen.SigProfilerMatrixGeneratorFunc(
+        project, genome_version, tmp_dirname
+    )
+    counts = matrices["ID"]
+    counts.columns = ["count"]
+    if os.path.exists(tmp_dirname):
+        subprocess.run(["rm", "-rf", tmp_dirname])
+    return counts
 
 
 def count_snvs(snvs, genome=genome):

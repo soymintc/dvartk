@@ -25,3 +25,7 @@
 ## Fixed
 
 - Bugfix: plot_venn2 savefig functionality (bug d/t lack of `plt.close()`)
+
+## Added
+
+- `count_indels` to count indels using SigProfilerMatrixGenerator

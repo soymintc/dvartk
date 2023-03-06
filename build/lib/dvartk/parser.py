@@ -233,7 +233,7 @@ class SvComparison:
         """Returns #A, #B, #(A-B), #(B-A), #(A&B), #(A|B)"""
         if print_header:
             print("A B A-B B-A A&B A|B".replace(" ", delimitor))
-        for attr in ["A", "B"]:
+        for attr in ("A", "B"):
             if not hasattr(self, attr):
                 self.get_set_counts()
         field = [
@@ -315,7 +315,7 @@ class SnvComparison:
             )
 
     def make_oneliner(self, name=None, get_str=False):
-        for attr in ["A", "B"]:
+        for attr in ("A", "B"):
             if not hasattr(self, attr):
                 self.get_set_counts()
         field = [

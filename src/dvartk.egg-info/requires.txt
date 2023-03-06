@@ -4,3 +4,4 @@ numpy
 matplotlib
 matplotlib_venn
 seaborn
+SigProfilerMatrixGenerator
