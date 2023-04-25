@@ -74,6 +74,7 @@ def plot_snv_spectra(
 ):
     """Draw SNV spectra plot based on SNV counts"""
 
+    colors = ["#03BDEE", "#000000", "#E52A25", "#CDC9CA", "#A3CE62", "#ECC6C5"]
     fig, ax = plt.subplots(1)
     fig.set_figheight(4)
     fig.set_figwidth(20)
@@ -90,10 +91,13 @@ def plot_snv_spectra(
     if debug:
         print(df)
 
-    for mut_type, mut_type_data in df.groupby(["norm_mut_type"]):
+    for ix, (mut_type, mut_type_data) in enumerate(df.groupby(["norm_mut_type"])):
+        color = colors[ix]
         if debug:
             print(mut_type, mut_type_data)
-        ax.bar(data=mut_type_data, x="index", height="count", label=mut_type)
+        ax.bar(
+            data=mut_type_data, x="index", height="count", label=mut_type, color=color
+        )
 
     font = matplotlib.font_manager.FontProperties()
     font.set_family("monospace")
