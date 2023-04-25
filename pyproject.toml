@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dvartk"
+authors = [
+    {name = "Seongmin Choi", email = "soymintc@gmail.com"},
+]
+description = "Comparing SNVs, indels, and SVs of maf/tsv files"
+readme = "README.md"
+requires-python = ">=3.7"
+keywords=["SNV", "indel", "SV", "comparison", "toolkit"]
+license = {text = "MIT License"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "pandas",
+    "wgs-analysis",
+    "numpy",
+    "matplotlib",
+    "matplotlib_venn",
+    "seaborn",
+    "SigProfilerMatrixGenerator",
+]
+dynamic = ["version"]
+
+[tool.setuptools_scm]
+write_to = "dvartk/_version.py"

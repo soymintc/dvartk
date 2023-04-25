@@ -1,5 +1,3 @@
-__version__ = "0.1.15"
-
 from dvartk.parser import (
     SvFileConfig,
     SnvFileConfig,
@@ -11,6 +9,7 @@ from dvartk.parser import (
 from dvartk.process import (
     count_svs,
     count_snvs,
+    count_indels,
 )
 
 from dvartk.plotter import (
