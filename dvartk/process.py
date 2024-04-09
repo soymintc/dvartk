@@ -6,8 +6,6 @@ import numpy as np
 from pyfaidx import Fasta
 from SigProfilerMatrixGenerator.scripts import SigProfilerMatrixGeneratorFunc as matGen
 
-genome = Fasta("/juno/work/shah/users/chois7/mmctm/reference/GRCh37-lite.fa")
-
 
 def construct_empty_count_series():
     snvs = ["C>A", "C>G", "C>T", "T>A", "T>C", "T>G"]
@@ -187,7 +185,7 @@ def count_indels(df, genome_version="GRCh37"):
     return counts
 
 
-def count_snvs(snvs, genome=genome):
+def count_snvs(snvs, genome):
     """Convert maf form to count table per variant type. Requires 'genome'"""
     df = snvs.copy()  # snvs <- essentially "maf" variable
 
